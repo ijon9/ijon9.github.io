@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Graph Database</title>
+</head>
+
+
+<body>
+  <h1>
+    What is a graph database?
+  </h1>
+  Database that uses a graph structure to store items and their relationships to other items through the use of <b><u>nodes</u></b> and <b><u>edges</u></b>.
+
+  <br><br><br>
+  <h2>
+    Why are they useful?
+  </h2>
+  <p>
+    <ul>
+      <li>Good for handling extremely large and complex data </li>
+
+        <ul>
+          <li>No fixed schema:</li>
+
+              <ul>
+                <li> No redundant data </li>
+                  <li> Relationships and nodes can be conveniently altered without shifting the design of your database. </li>
+                  </ul>
+          </ul>
+          <br>
+          Every relationship and node contains important information whereas in a language like SQL
+          which is relational, it would be difficult to create links between different tables. This allows you
+          to create an extremely complex dataset. For example, a dataset of actors and all the movies they have
+          and haven't acted in would be possible and intuitive using graph databases. 
+      </ul>
+  </p>
+
+  <h2> Nodes </h2>
+  <ul>
+    <li> Items that are in a graph </li>
+    <li> Items have </li>
+    <ul>
+      <li> <u>Properties:</u> attributes that ares tored as key-value pairs. </li>
+      <li> <u>Labels:</u> Used to specify item's role </li>
+      <li> e.g. </li>
+      <img src="nodes.png"></img>
+    </ul>
+    </ul>
+
+    <h2> Edges/Relationships </h2>
+    <ul>
+      <li> Relationships have: </li>
+      <ul>
+        <li> Direction</li>
+        <li> Type </li>
+        <li> Properties </li>
+        <img src="edges.png"></img>
+      </ul>
+    </ul>
+
+  <h1> Implementation </h1>
+    <p> Neo4j is a graph database platform. It uses a query language called Cypher which closely resembles SQL, making the syntax intuitive and easy to follow </p>
+  <h2> Syntax </h2>
+    <p> Creating nodes can be done using the CREATE keyword, allowing you to specify attributes of the node. Additionally,
+      you can save the node as a temporary variable which allows us to return it, displaying it on the page. </p>
+    <p> <font face="Courier" color="blue" size="2"> //Creates two nodes. One for Bob, and one for Stuy <br>
+      CREATE (p:Person {name: 'Bob', age: 17})<br>
+      CREATE (s:School {name: 'Stuy'})<br>
+      RETURN p, s </font>
+    </p>
+    <p> To create edges, you first need to select the two nodes which you want to link using the MATCH keyword. We can then create the edge using the selected nodes like so. </p>
+    <p> <font face="Courier" color="blue" size=2>
+      //Creates link "Bob has studied at Stuy since 2015" <br>
+      MATCH (bob:Person {name:'Bob'})<br>
+      MATCH (s:School {name:'Stuy'})<br>
+      CREATE (bob)-[:STUDIES_AT {Start: 2015}]->(s) <br>
+      RETURN bob, s <br>
+    </font>
+    </p>
+
+  <h2> More Information </h2>
+  <p> Check out these sites for more information </p>
+  <ul>
+    <li> <a href="https://neo4j.com/sandbox-v2/"> Neo4j Sandbox </a> </li>
+    <li> <a href="https://neo4j.com/docs/cypher-manual/current/"> Cypher Documentation </a> </li>
+  </ul>
+
+
+</body>
+
+</html>
